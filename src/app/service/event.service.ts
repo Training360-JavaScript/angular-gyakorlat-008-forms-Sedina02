@@ -22,11 +22,19 @@ export class EventService {
     return this.http.get<Event>(`${this.eventsUrl}/${id}`);
   }
 
+  create(event: Event): Observable<Event> {
+    return this.http.post<Event>(`${this.eventsUrl}`, event);
+  }
+
   update(event: Event): Observable<Event> {
     return this.http.patch<Event>(
       `${this.eventsUrl}/${event.id}`,
       event,
     );
+  }
+
+  remove(id: number): Observable<Event> {
+    return this.http.delete<Event>(`${this.eventsUrl}/${id}`);
   }
 
 }

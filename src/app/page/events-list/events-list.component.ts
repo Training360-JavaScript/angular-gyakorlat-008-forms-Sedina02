@@ -20,4 +20,12 @@ export class EventsListComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  eventCreate() {
+    this.router.navigate(['/event', 0]);
+  }
+
+  eventDelete(id: number): void {
+    this.eventService.remove(id);
+  }
+
 }

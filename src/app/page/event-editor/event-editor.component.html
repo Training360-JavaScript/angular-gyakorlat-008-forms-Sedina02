@@ -4,23 +4,33 @@
       <div class="form-group">
         <label for="">Name</label>
         <input name="name" [(ngModel)]="event.name" type="text"
-          class="form-control" pattern=".{8,}" required>
+          class="form-control" pattern=".{8,25}" required>
         <div [hidden]="eventForm.controls.name?.valid" class="error-message">
-          The name of the event must be...
+          The character length should be between 8-25!
         </div>
       </div>
       <div class="form-group">
         <label for="">Date</label>
         <input name="date" [(ngModel)]="event.date" type="text"
-          class="form-control">
+          class="form-control" pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$" required>
+        <div [hidden]="eventForm.controls.date?.valid" class="error-message">
+          The date format is wrong! The valid date format is (DD/MM/YYYY).
+        </div>
       </div>
       <div class="form-group">
         <label for="">Time</label>
-        <input name="time" [(ngModel)]="event.time" type="text" class="form-control">
+        <input name="time" [(ngModel)]="event.time" type="text" class="form-control" pattern="^[0-2][0-3]:[0-5][0-9]( ?)([AaPp][Mm])$" required>
+        <div [hidden]="eventForm.controls.time?.valid" class="error-message">
+          The time format is wrong! The valid time format is include AM or PM.
+        </div>
       </div>
       <div class="form-group">
         <label for="">Location</label>
-        <input name="location" [(ngModel)]="event.location" type="text" class="form-control">
+        <input name="location" [(ngModel)]="event.location" type="text" class="form-control" pattern="^[A-Z].{5,25}" required>
+        <div [hidden]="eventForm.controls.location?.valid" class="error-message">
+          The location format is wrong! Start with an uppercase letter. Provide from
+          5 to 25 characters.
+        </div>
       </div>
 
       <button type="submit" class="btn btn-primary btn-block btn-lg">
